@@ -23,12 +23,3 @@ jobs:
       run: |
         docker build -t ${{ secrets.DOCKER_USERNAME }}/nodejs-k8s-demo:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-k8s-demo:latest
-
-    - name: Set up Kubeconfig
-      run: |
-        echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
-        export KUBECONFIG=$PWD/kubeconfig
-
-    - name: Deploy to Kubernetes
-      run: |
-        kubectl apply -f k8s/deployment.yaml
